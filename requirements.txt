@@ -1,0 +1,14 @@
+langchain==0.3.25
+langchain-community==0.3.24
+langchain-groq==0.3.2
+groq==0.30.0
+sentence-transformers==4.1.0
+chromadb==1.0.12
+beautifulsoup4==4.13.4
+httpx==0.28.1
+playwright==1.52.0
+streamlit==1.45.1
+python-dotenv==1.1.0
+fastapi>=0.100.0
+uvicorn>=0.23.0
+pydantic>=2.0.0

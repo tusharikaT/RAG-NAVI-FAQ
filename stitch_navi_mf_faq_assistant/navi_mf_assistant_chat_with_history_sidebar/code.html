@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Navi MF Assistant</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary": "#1000a9",
+                        "tertiary-container": "#d97721",
+                        "on-primary-fixed": "#07006c",
+                        "on-secondary-fixed": "#001e2c",
+                        "on-surface": "#d4e4fa",
+                        "error": "#ffb4ab",
+                        "surface-container-highest": "#273647",
+                        "tertiary-fixed": "#ffdcc5",
+                        "primary-fixed": "#e1e0ff",
+                        "tertiary": "#ffb783",
+                        "surface": "#051424",
+                        "on-secondary-fixed-variant": "#004c69",
+                        "secondary-fixed-dim": "#7bd0ff",
+                        "surface-container-low": "#0d1c2d",
+                        "secondary": "#7bd0ff",
+                        "on-tertiary": "#4f2500",
+                        "surface-container-lowest": "#010f1f",
+                        "primary": "#c0c1ff",
+                        "surface-variant": "#273647",
+                        "inverse-surface": "#d4e4fa",
+                        "on-secondary-container": "#00374d",
+                        "primary-fixed-dim": "#c0c1ff",
+                        "surface-bright": "#2c3a4c",
+                        "on-tertiary-fixed": "#301400",
+                        "on-error-container": "#ffdad6",
+                        "outline-variant": "#464554",
+                        "secondary-fixed": "#c4e7ff",
+                        "outline": "#908fa0",
+                        "secondary-container": "#00a6e0",
+                        "surface-container-high": "#1c2b3c",
+                        "on-tertiary-container": "#452000",
+                        "on-secondary": "#00354a",
+                        "inverse-primary": "#494bd6",
+                        "on-background": "#d4e4fa",
+                        "primary-container": "#8083ff",
+                        "on-surface-variant": "#c7c4d7",
+                        "surface-tint": "#c0c1ff",
+                        "on-error": "#690005",
+                        "on-primary-fixed-variant": "#2f2ebe",
+                        "tertiary-fixed-dim": "#ffb783",
+                        "on-tertiary-fixed-variant": "#703700",
+                        "surface-container": "#122131",
+                        "background": "#051424",
+                        "error-container": "#93000a",
+                        "on-primary-container": "#0d0096",
+                        "inverse-on-surface": "#233143",
+                        "surface-dim": "#051424"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "xl": "40px",
+                        "gutter": "20px",
+                        "sm": "8px",
+                        "lg": "24px",
+                        "container-max": "1200px",
+                        "unit": "4px",
+                        "md": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "code-sm": ["Inter"],
+                        "display-lg-mobile": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "display-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "code-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* CSS Animations for Framer Motion style feel */
+        @keyframes slideUpFade {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        .message-enter {
+            animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .glass-panel {
+            background: rgba(13, 28, 45, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .bot-bubble {
+            background: rgba(13, 28, 45, 0.8);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .dot-flashing {
+            position: relative;
+            width: 8px;
+            height: 8px;
+            border-radius: 5px;
+            background-color: theme('colors.primary');
+            color: theme('colors.primary');
+            animation: dot-flashing 1s infinite linear alternate;
+            animation-delay: 0.5s;
+        }
+        .dot-flashing::before, .dot-flashing::after {
+            content: '';
+            display: inline-block;
+            position: absolute;
+            top: 0;
+        }
+        .dot-flashing::before {
+            left: -12px;
+            width: 8px;
+            height: 8px;
+            border-radius: 5px;
+            background-color: theme('colors.primary');
+            color: theme('colors.primary');
+            animation: dot-flashing 1s infinite alternate;
+            animation-delay: 0s;
+        }
+        .dot-flashing::after {
+            left: 12px;
+            width: 8px;
+            height: 8px;
+            border-radius: 5px;
+            background-color: theme('colors.primary');
+            color: theme('colors.primary');
+            animation: dot-flashing 1s infinite alternate;
+            animation-delay: 1s;
+        }
+
+        @keyframes dot-flashing {
+            0% { background-color: theme('colors.primary'); }
+            50%, 100% { background-color: rgba(192, 193, 255, 0.2); }
+        }
+
+        /* Custom Scrollbar for Chat Area */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md h-screen flex flex-col overflow-hidden pl-64">
+<!-- SideNavBar -->
+<aside class="bg-surface-container-low/60 dark:bg-surface-container-low/60 backdrop-blur-lg h-screen w-64 fixed left-0 top-0 border-r border-white/10 shadow-none flex flex-col p-md z-50">
+<!-- Header -->
+<div class="flex items-center gap-3 mb-8 px-2">
+<div class="w-10 h-10 rounded-full bg-primary-container/20 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary" data-icon="account_circle">account_circle</span>
+</div>
+<div>
+<h2 class="text-headline-md font-headline-md font-black text-primary leading-tight text-lg">Navi MF</h2>
+<p class="text-label-md font-label-md text-on-surface-variant/70 text-xs">Premium Assistant</p>
+</div>
+</div>
+<!-- CTA -->
+<button class="w-full bg-primary text-on-primary py-3 px-4 rounded-xl hover:bg-primary-fixed transition-colors flex items-center justify-center gap-2 mb-8 text-label-md font-label-md font-semibold">
+<span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
+        New Analysis
+    </button>
+<!-- Tabs -->
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg bg-primary/20 text-primary border-r-2 border-primary transition-all duration-200 ease-in-out text-label-md font-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="chat">chat</span>
+            Chat
+        </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant/70 hover:text-on-surface hover:bg-white/5 transition-all duration-200 ease-in-out text-label-md font-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+            Portfolio
+        </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant/70 hover:text-on-surface hover:bg-white/5 transition-all duration-200 ease-in-out text-label-md font-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="insights">insights</span>
+            Insights
+        </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant/70 hover:text-on-surface hover:bg-white/5 transition-all duration-200 ease-in-out text-label-md font-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+            History
+        </a>
+</nav>
+</aside>
+<!-- TopAppBar from JSON Component -->
+<header class="bg-surface/60 dark:bg-surface/60 backdrop-blur-md fixed top-0 w-[calc(100%-256px)] z-40 border-b border-white/10 shadow-none flex justify-between items-center px-gutter py-md max-w-screen-xl mx-auto right-0 left-64">
+<div class="flex flex-col">
+<h1 class="text-headline-md font-headline-md font-bold text-primary tracking-tight">Navi MF Assistant</h1>
+<span class="text-code-sm font-code-sm text-on-surface-variant flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined" style="font-size: 14px;">warning</span>
+                ⚠️ Facts-only. No investment advice.
+            </span>
+</div>
+<div class="flex gap-4 items-center">
+<span class="material-symbols-outlined text-primary dark:text-primary cursor-pointer active:scale-95 transition-transform hover:bg-white/5 p-2 rounded-full" data-icon="info">info</span>
+<span class="material-symbols-outlined text-primary dark:text-primary cursor-pointer active:scale-95 transition-transform hover:bg-white/5 p-2 rounded-full" data-icon="account_circle">account_circle</span>
+</div>
+</header>
+<!-- Main Chat Canvas -->
+<main class="flex-1 flex flex-col pt-[90px] pb-[100px] max-w-[800px] mx-auto w-full relative">
+<!-- Background Ambient Glow -->
+<div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+<div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary-container/10 rounded-full blur-3xl"></div>
+<div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary-container/10 rounded-full blur-3xl"></div>
+</div>
+<!-- Chat History Container -->
+<div class="flex-1 overflow-y-auto px-4 z-10 scroll-smooth flex flex-col gap-6 pt-8 pb-4" id="chat-history">
+<!-- Empty State -->
+<div class="flex flex-col items-center justify-center h-full text-center message-enter" id="empty-state">
+<div class="w-16 h-16 rounded-2xl glass-panel flex items-center justify-center mb-6 text-primary shadow-[0_0_30px_rgba(192,193,255,0.2)]">
+<span class="material-symbols-outlined text-4xl" data-icon="smart_toy">smart_toy</span>
+</div>
+<h2 class="text-display-lg-mobile font-display-lg-mobile text-on-surface mb-4">How can I help you today?</h2>
+<p class="text-body-md font-body-md text-on-surface-variant mb-8 max-w-md">
+                    Ask me anything about Navi Mutual Funds. I can provide facts, figures, and technical details.
+                </p>
+<div class="flex flex-col gap-3 w-full max-w-lg">
+<button class="suggestion-btn glass-panel text-left px-6 py-4 rounded-xl hover:bg-white/5 transition-colors border border-white/10 hover:border-primary/50 text-body-md font-body-md flex items-center justify-between group">
+                        What is the expense ratio of Navi Nifty 50?
+                        <span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">arrow_forward</span>
+</button>
+<button class="suggestion-btn glass-panel text-left px-6 py-4 rounded-xl hover:bg-white/5 transition-colors border border-white/10 hover:border-primary/50 text-body-md font-body-md flex items-center justify-between group">
+                        What is the exit load for Navi ELSS?
+                        <span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">arrow_forward</span>
+</button>
+<button class="suggestion-btn glass-panel text-left px-6 py-4 rounded-xl hover:bg-white/5 transition-colors border border-white/10 hover:border-primary/50 text-body-md font-body-md flex items-center justify-between group">
+                        What is the minimum SIP amount for Navi Liquid Fund?
+                        <span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Messages will be injected here -->
+</div>
+<!-- Sticky Input Area -->
+<div class="absolute bottom-0 w-full px-4 pb-6 pt-4 bg-gradient-to-t from-background via-background to-transparent z-20">
+<div class="relative glass-panel rounded-2xl max-w-[800px] mx-auto shadow-lg shadow-black/20 focus-within:shadow-[0_0_15px_rgba(192,193,255,0.15)] transition-shadow">
+<textarea class="w-full bg-transparent border-0 text-on-surface placeholder:text-on-surface-variant/50 focus:ring-0 resize-none py-4 pl-6 pr-16 rounded-2xl max-h-32 text-body-md font-body-md" id="chat-input" placeholder="Ask about Navi Mutual Funds..." rows="1"></textarea>
+<button class="absolute right-3 top-1/2 -translate-y-1/2 p-2 bg-primary text-on-primary rounded-xl hover:bg-primary-fixed transition-colors flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed" id="send-btn">
+<span class="material-symbols-outlined" data-icon="send">send</span>
+</button>
+</div>
+<div class="text-center mt-2">
+<span class="text-code-sm font-code-sm text-on-surface-variant/50">AI generated responses. Verify before investing.</span>
+</div>
+</div>
+</main>
+<!-- Templates for JavaScript Injection -->
+<template id="user-message-template">
+<div class="flex justify-end w-full message-enter">
+<div class="max-w-[85%] bg-primary text-on-primary px-6 py-3 rounded-2xl rounded-tr-sm shadow-md">
+<p class="text-body-md font-body-md whitespace-pre-wrap message-content"></p>
+</div>
+</div>
+</template>
+<template id="bot-message-template">
+<div class="flex justify-start w-full message-enter">
+<div class="flex gap-4 max-w-[90%]">
+<div class="w-8 h-8 rounded-full bg-surface-variant border border-white/10 flex items-center justify-center shrink-0 mt-1">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="smart_toy">smart_toy</span>
+</div>
+<div class="bot-bubble text-on-surface px-6 py-4 rounded-2xl rounded-tl-sm shadow-md flex flex-col gap-3">
+<p class="text-body-md font-body-md whitespace-pre-wrap text-on-surface-variant message-content leading-relaxed"></p>
+<!-- Metadata Section (Citation & Footer) -->
+<div class="flex flex-col gap-2 mt-2 pt-3 border-t border-white/5 metadata-container">
+<a class="citation-link flex items-center gap-1 w-fit px-3 py-1.5 rounded-md bg-white/5 hover:bg-white/10 border border-white/10 text-label-md font-label-md text-secondary transition-colors" href="#">
+<span class="material-symbols-outlined text-[16px]" data-icon="link">link</span>
+<span class="citation-text">Source Document</span>
+</a>
+<div class="flex items-center justify-between mt-1">
+<span class="text-code-sm font-code-sm text-on-surface-variant/60 footer-text"></span>
+<span class="text-code-sm font-code-sm text-error/80 disclaimer-text"></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</template>
+<template id="loading-template">
+<div class="flex justify-start w-full message-enter loading-indicator" id="current-loading">
+<div class="flex gap-4 max-w-[90%] items-center">
+<div class="w-8 h-8 rounded-full bg-surface-variant border border-white/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="smart_toy">smart_toy</span>
+</div>
+<div class="bot-bubble px-6 py-4 rounded-2xl rounded-tl-sm h-[52px] flex items-center justify-center min-w-[80px]">
+<div class="dot-flashing"></div>
+</div>
+</div>
+</div>
+</template>
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const chatInput = document.getElementById('chat-input');
+            const sendBtn = document.getElementById('send-btn');
+            const chatHistory = document.getElementById('chat-history');
+            const emptyState = document.getElementById('empty-state');
+            const suggestionBtns = document.querySelectorAll('.suggestion-btn');
+
+            const userTemplate = document.getElementById('user-message-template');
+            const botTemplate = document.getElementById('bot-message-template');
+            const loadingTemplate = document.getElementById('loading-template');
+
+            let isWaitingForResponse = false;
+
+            // Auto-resize textarea
+            chatInput.addEventListener('input', function() {
+                this.style.height = 'auto';
+                this.style.height = (this.scrollHeight) + 'px';
+                if(this.value.trim() === '') {
+                    this.style.height = 'auto';
+                }
+            });
+
+            // Handle suggestions
+            suggestionBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const text = e.target.closest('button').innerText.trim().replace('arrow_forward', '');
+                    handleUserSubmission(text);
+                });
+            });
+
+            // Handle send button
+            sendBtn.addEventListener('click', () => {
+                const text = chatInput.value.trim();
+                if (text) handleUserSubmission(text);
+            });
+
+            // Handle enter key
+            chatInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    const text = chatInput.value.trim();
+                    if (text) handleUserSubmission(text);
+                }
+            });
+
+            function appendMessage(template, contentModifierFn) {
+                const clone = template.content.cloneNode(true);
+                contentModifierFn(clone);
+                chatHistory.appendChild(clone);
+                scrollToBottom();
+            }
+
+            function showLoading() {
+                const clone = loadingTemplate.content.cloneNode(true);
+                chatHistory.appendChild(clone);
+                scrollToBottom();
+                isWaitingForResponse = true;
+                chatInput.disabled = true;
+                sendBtn.disabled = true;
+            }
+
+            function hideLoading() {
+                const loading = document.getElementById('current-loading');
+                if (loading) loading.remove();
+                isWaitingForResponse = false;
+                chatInput.disabled = false;
+                sendBtn.disabled = false;
+                chatInput.focus();
+            }
+
+            function scrollToBottom() {
+                chatHistory.scrollTo({
+                    top: chatHistory.scrollHeight,
+                    behavior: 'smooth'
+                });
+            }
+
+            async function handleUserSubmission(text) {
+                if (isWaitingForResponse) return;
+
+                // Hide empty state if present
+                if (emptyState && emptyState.style.display !== 'none') {
+                    emptyState.style.display = 'none';
+                }
+
+                // Add User Message
+                appendMessage(userTemplate, (clone) => {
+                    clone.querySelector('.message-content').textContent = text;
+                });
+
+                // Reset input
+                chatInput.value = '';
+                chatInput.style.height = 'auto';
+
+                showLoading();
+
+                try {
+                    // Simulate API Call to http://127.0.0.1:8000/api/v1/query
+                    // In a real env, uncomment the fetch block below.
+                    /*
+                    const response = await fetch('http://127.0.0.1:8000/api/v1/query', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ query: text })
+                    });
+                    const data = await response.json();
+                    */
+                    
+                    // Mocked Response for Demonstration
+                    await new Promise(resolve => setTimeout(resolve, 1500));
+                    const data = {
+                        answer: `Based on the latest scheme information document, the details are as follows:\n\nNavi Nifty 50 Index Fund has a direct plan expense ratio of 0.06%.\n\nThis is currently among the lowest in the industry for passive Nifty 50 funds.`,
+                        citation: "Navi Nifty 50 SID v2.4 (Page 12)",
+                        footer: "Last updated: Oct 2023",
+                        disclaimer: "Data subject to market changes."
+                    };
+
+                    hideLoading();
+
+                    // Add Bot Message
+                    appendMessage(botTemplate, (clone) => {
+                        clone.querySelector('.message-content').textContent = data.answer;
+                        
+                        if(data.citation) {
+                            clone.querySelector('.citation-text').textContent = data.citation;
+                        } else {
+                            clone.querySelector('.citation-link').style.display = 'none';
+                        }
+
+                        if(data.footer) {
+                            clone.querySelector('.footer-text').textContent = data.footer;
+                        }
+                        
+                        if(data.disclaimer) {
+                            clone.querySelector('.disclaimer-text').textContent = data.disclaimer;
+                        }
+                    });
+
+                } catch (error) {
+                    hideLoading();
+                    appendMessage(botTemplate, (clone) => {
+                        clone.querySelector('.message-content').textContent = "Connection error. Please ensure the backend service is running at 127.0.0.1:8000.";
+                        clone.querySelector('.message-content').classList.add('text-error');
+                        clone.querySelector('.metadata-container').style.display = 'none';
+                    });
+                }
+            }
+        });
+    </script>
+</body></html>

@@ -1,0 +1,77 @@
+{
+  "1": {
+    "fund_name": "Navi Nifty 50 Index Fund \u2013 Direct Growth",
+    "chunk_count": 8,
+    "ingested_at": "2026-07-06T11:32:45.990016+00:00"
+  },
+  "2": {
+    "fund_name": "Navi Nifty Next 50 Index Fund \u2013 Direct Growth",
+    "chunk_count": 8,
+    "ingested_at": "2026-07-06T11:32:47.598881+00:00"
+  },
+  "3": {
+    "fund_name": "Navi Nifty IT Index Fund \u2013 Direct Growth",
+    "chunk_count": 8,
+    "ingested_at": "2026-07-06T11:32:48.996673+00:00"
+  },
+  "4": {
+    "fund_name": "Navi Nifty Midcap 150 Index Fund \u2013 Direct Growth",
+    "chunk_count": 8,
+    "ingested_at": "2026-07-06T11:32:50.717708+00:00"
+  },
+  "5": {
+    "fund_name": "Navi Flexi Cap Fund \u2013 Direct Growth",
+    "chunk_count": 8,
+    "ingested_at": "2026-07-06T11:32:52.312249+00:00"
+  },
+  "6": {
+    "fund_name": "Navi Nifty India Manufacturing Index Fund \u2013 Direct Growth",
+    "chunk_count": 8,
+    "ingested_at": "2026-07-06T11:32:53.962700+00:00"
+  },
+  "7": {
+    "fund_name": "Navi Nifty Smallcap250 Momentum Quality 100 Index Fund \u2013 Direct Growth",
+    "chunk_count": 8,
+    "ingested_at": "2026-07-06T11:32:55.399420+00:00"
+  },
+  "8": {
+    "fund_name": "Navi Nifty Bank Index Fund \u2013 Direct Growth",
+    "chunk_count": 8,
+    "ingested_at": "2026-07-06T11:32:56.713669+00:00"
+  },
+  "9": {
+    "fund_name": "Navi Nifty 500 Multicap 50:25:25 Index Fund \u2013 Direct Growth",
+    "chunk_count": 8,
+    "ingested_at": "2026-07-06T11:32:58.636105+00:00"
+  },
+  "10": {
+    "fund_name": "Navi ELSS Tax Saver Nifty 50 Index Fund \u2013 Direct Growth",
+    "chunk_count": 8,
+    "ingested_at": "2026-07-06T11:33:00.239714+00:00"
+  },
+  "11": {
+    "fund_name": "Navi Nifty MidSmallcap 400 Index Fund \u2013 Direct Growth",
+    "chunk_count": 8,
+    "ingested_at": "2026-07-06T11:33:01.844602+00:00"
+  },
+  "12": {
+    "fund_name": "Navi Large & Midcap Fund \u2013 Direct Growth",
+    "chunk_count": 8,
+    "ingested_at": "2026-07-06T11:33:03.326758+00:00"
+  },
+  "13": {
+    "fund_name": "Navi Liquid Fund \u2013 Direct Growth",
+    "chunk_count": 8,
+    "ingested_at": "2026-07-06T11:33:05.315015+00:00"
+  },
+  "14": {
+    "fund_name": "Navi Aggressive Hybrid Fund \u2013 Direct Growth",
+    "chunk_count": 8,
+    "ingested_at": "2026-07-06T11:33:06.870345+00:00"
+  },
+  "15": {
+    "fund_name": "Navi BSE Sensex Index Fund \u2013 Direct Growth",
+    "chunk_count": 8,
+    "ingested_at": "2026-07-06T11:33:08.349737+00:00"
+  }
+}

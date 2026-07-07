@@ -1,0 +1,135 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-on-primary: #1000a9;
+  --color-tertiary-container: #d97721;
+  --color-on-primary-fixed: #07006c;
+  --color-on-secondary-fixed: #001e2c;
+  --color-on-surface: #d4e4fa;
+  --color-error: #ffb4ab;
+  --color-surface-container-highest: #273647;
+  --color-tertiary-fixed: #ffdcc5;
+  --color-primary-fixed: #e1e0ff;
+  --color-tertiary: #ffb783;
+  --color-surface: #051424;
+  --color-on-secondary-fixed-variant: #004c69;
+  --color-secondary-fixed-dim: #7bd0ff;
+  --color-surface-container-low: #0d1c2d;
+  --color-secondary: #7bd0ff;
+  --color-on-tertiary: #4f2500;
+  --color-surface-container-lowest: #010f1f;
+  --color-primary: #c0c1ff;
+  --color-surface-variant: #273647;
+  --color-inverse-surface: #d4e4fa;
+  --color-on-secondary-container: #00374d;
+  --color-primary-fixed-dim: #c0c1ff;
+  --color-surface-bright: #2c3a4c;
+  --color-on-tertiary-fixed: #301400;
+  --color-on-error-container: #ffdad6;
+  --color-outline-variant: #464554;
+  --color-secondary-fixed: #c4e7ff;
+  --color-outline: #908fa0;
+  --color-secondary-container: #00a6e0;
+  --color-surface-container-high: #1c2b3c;
+  --color-on-tertiary-container: #452000;
+  --color-on-secondary: #00354a;
+  --color-inverse-primary: #494bd6;
+  --color-on-background: #d4e4fa;
+  --color-primary-container: #8083ff;
+  --color-on-surface-variant: #c7c4d7;
+  --color-surface-tint: #c0c1ff;
+  --color-on-error: #690005;
+  --color-on-primary-fixed-variant: #2f2ebe;
+  --color-tertiary-fixed-dim: #ffb783;
+  --color-on-tertiary-fixed-variant: #703700;
+  --color-surface-container: #122131;
+  --color-background: #051424;
+  --color-error-container: #93000a;
+  --color-on-primary-container: #0d0096;
+  --color-inverse-on-surface: #233143;
+  --color-surface-dim: #051424;
+}
+
+
+        /* CSS Animations for Framer Motion style feel */
+        @keyframes slideUpFade {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        .message-enter {
+            animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .glass-panel {
+            background: rgba(13, 28, 45, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .bot-bubble {
+            background: rgba(13, 28, 45, 0.8);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .dot-flashing {
+            position: relative;
+            width: 8px;
+            height: 8px;
+            border-radius: 5px;
+            background-color: theme('colors.primary');
+            color: theme('colors.primary');
+            animation: dot-flashing 1s infinite linear alternate;
+            animation-delay: 0.5s;
+        }
+        .dot-flashing::before, .dot-flashing::after {
+            content: '';
+            display: inline-block;
+            position: absolute;
+            top: 0;
+        }
+        .dot-flashing::before {
+            left: -12px;
+            width: 8px;
+            height: 8px;
+            border-radius: 5px;
+            background-color: theme('colors.primary');
+            color: theme('colors.primary');
+            animation: dot-flashing 1s infinite alternate;
+            animation-delay: 0s;
+        }
+        .dot-flashing::after {
+            left: 12px;
+            width: 8px;
+            height: 8px;
+            border-radius: 5px;
+            background-color: theme('colors.primary');
+            color: theme('colors.primary');
+            animation: dot-flashing 1s infinite alternate;
+            animation-delay: 1s;
+        }
+
+        @keyframes dot-flashing {
+            0% { background-color: theme('colors.primary'); }
+            50%, 100% { background-color: rgba(192, 193, 255, 0.2); }
+        }
+
+        /* Custom Scrollbar for Chat Area */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+    
