@@ -79,7 +79,7 @@ export default function Home() {
       const errorMessage: Message = {
         id: (Date.now() + 1).toString(),
         sender: 'bot',
-        text: 'Connection error. Please ensure the backend service is running at 127.0.0.1:8000.',
+        text: 'Connection error. Please ensure the backend service is running and NEXT_PUBLIC_API_URL is correctly configured.',
       };
       setMessages((prev) => [...prev, errorMessage]);
     } finally {
