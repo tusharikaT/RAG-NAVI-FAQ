@@ -16,7 +16,7 @@ app = FastAPI(title="Navi MF FAQ Assistant API")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],  # For local dev, allow all origins
-    allow_credentials=True,
+    allow_credentials=False,  # Browsers reject credentials with wildcard origins
     allow_methods=["*"],
     allow_headers=["*"],
 )
