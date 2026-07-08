@@ -26,3 +26,10 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Utility and Eval Scripts
+eval_phase*.py
+extract_theme.py
+test_query.py
+verify_setup.py
+view_embeddings.py
