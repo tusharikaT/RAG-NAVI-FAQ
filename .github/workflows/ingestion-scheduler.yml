@@ -30,7 +30,7 @@ jobs:
 
       - name: Run Data Ingestion Pipeline
         run: |
-          python main.py --ingest-only
+          python -m corpus.ingest --force
         env:
           # In case the scraper needs any env vars, though Groq is mostly used in inference.
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
