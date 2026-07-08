@@ -2,7 +2,7 @@
 .env
 
 # ChromaDB persisted vector store
-data/chroma_db/
+# (Removed so GitHub Actions and Railway can read the database)
 
 # Python cache
 __pycache__/
